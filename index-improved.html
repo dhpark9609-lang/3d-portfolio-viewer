@@ -650,26 +650,53 @@
         }
 
         function disposeMaterials() {
-            originalMaterials.forEach((material, mesh) => {
-                if (Array.isArray(material)) {
-                    material.forEach(mat => mat.dispose());
-                } else {
-                    material.dispose();
-                }
-            });
-            originalMaterials.clear();
-
-            // Clear wireframe helpers
-            wireframeHelpers.forEach((overlays, mesh) => {
-                overlays.forEach(overlay => {
-                    mesh.remove(overlay);
-                    if (overlay.geometry) overlay.geometry.dispose();
-                    if (overlay.material) overlay.material.dispose();
+            try {
+                // Dispose original materials
+                originalMaterials.forEach((material, mesh) => {
+                    try {
+                        if (Array.isArray(material)) {
+                            material.forEach(mat => {
+                                if (mat && mat.dispose) mat.dispose();
+                            });
+                        } else if (material && material.dispose) {
+                            material.dispose();
+                        }
+                    } catch (error) {
+                        console.error('Error disposing material:', error);
+                    }
                 });
-            });
-            wireframeHelpers.clear();
-            wireframeEnabled = false;
-            document.getElementById('wireframe-btn').classList.remove('active');
+                originalMaterials.clear();
+
+                // Clear wireframe helpers
+                wireframeHelpers.forEach((overlays, mesh) => {
+                    if (overlays && Array.isArray(overlays)) {
+                        overlays.forEach(overlay => {
+                            try {
+                                if (overlay && mesh) {
+                                    mesh.remove(overlay);
+                                }
+                                if (overlay && overlay.geometry && overlay.geometry.dispose) {
+                                    overlay.geometry.dispose();
+                                }
+                                if (overlay && overlay.material && overlay.material.dispose) {
+                                    overlay.material.dispose();
+                                }
+                            } catch (error) {
+                                console.error('Error disposing overlay:', error);
+                            }
+                        });
+                    }
+                });
+                wireframeHelpers.clear();
+                wireframeEnabled = false;
+
+                const btn = document.getElementById('wireframe-btn');
+                if (btn) {
+                    btn.classList.remove('active');
+                }
+            } catch (error) {
+                console.error('Error in disposeMaterials:', error);
+            }
         }
 
         function updateStats(model) {
@@ -701,35 +728,38 @@
         }
 
         function createWireframeOverlay(mesh) {
-            const overlays = [];
+            try {
+                const overlays = [];
 
-            // 1. Create chroma key green translucent overlay mesh (50% opacity)
-            const greenOverlayMaterial = new THREE.MeshBasicMaterial({
-                color: 0x00ff00,  // Chroma key green
-                transparent: true,
-                opacity: 0.5,
-                side: THREE.DoubleSide,
-                depthWrite: false  // Prevent z-fighting
-            });
+                // 1. Create chroma key green translucent overlay mesh (50% opacity)
+                const greenOverlayMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x00ff00,  // Chroma key green
+                    transparent: true,
+                    opacity: 0.5,
+                    side: THREE.DoubleSide,
+                    depthWrite: false,
+                    depthTest: true
+                });
 
-            const greenOverlay = new THREE.Mesh(mesh.geometry, greenOverlayMaterial);
-            greenOverlay.renderOrder = 1;  // Render after original mesh
-            overlays.push(greenOverlay);
+                const greenOverlay = new THREE.Mesh(mesh.geometry, greenOverlayMaterial);
+                overlays.push(greenOverlay);
 
-            // 2. Create black wireframe on top (use EdgesGeometry for quad preservation)
-            const edges = new THREE.EdgesGeometry(mesh.geometry, 15); // 15 degree threshold
-            const wireframeMaterial = new THREE.LineBasicMaterial({
-                color: 0x000000,  // Black wireframe
-                linewidth: 1,
-                transparent: true,
-                opacity: 1.0
-            });
+                // 2. Create black wireframe on top (use EdgesGeometry for quad preservation)
+                const edges = new THREE.EdgesGeometry(mesh.geometry, 15);
+                const wireframeMaterial = new THREE.LineBasicMaterial({
+                    color: 0x000000,  // Black wireframe
+                    linewidth: 1,
+                    depthTest: true
+                });
 
-            const wireframe = new THREE.LineSegments(edges, wireframeMaterial);
-            wireframe.renderOrder = 2;  // Render on top of green overlay
-            overlays.push(wireframe);
+                const wireframe = new THREE.LineSegments(edges, wireframeMaterial);
+                overlays.push(wireframe);
 
-            return overlays;
+                return overlays;
+            } catch (error) {
+                console.error('Error creating wireframe overlay:', error);
+                return [];
+            }
         }
 
         function toggleWireframe() {
@@ -738,30 +768,71 @@
             wireframeEnabled = !wireframeEnabled;
             const btn = document.getElementById('wireframe-btn');
 
-            if (wireframeEnabled) {
-                // Add wireframe overlays (green mesh + black wireframe)
-                currentModel.traverse((child) => {
-                    if (child.isMesh) {
-                        const overlays = createWireframeOverlay(child);
-                        overlays.forEach(overlay => {
-                            child.add(overlay);
-                        });
-                        wireframeHelpers.set(child, overlays);
-                    }
-                });
-            } else {
-                // Remove wireframe overlays
-                wireframeHelpers.forEach((overlays, mesh) => {
-                    overlays.forEach(overlay => {
-                        mesh.remove(overlay);
-                        if (overlay.geometry) overlay.geometry.dispose();
-                        if (overlay.material) overlay.material.dispose();
+            try {
+                if (wireframeEnabled) {
+                    // Add wireframe overlays (green mesh + black wireframe)
+                    const meshes = [];
+                    currentModel.traverse((child) => {
+                        if (child.isMesh && child.geometry) {
+                            meshes.push(child);
+                        }
                     });
-                });
-                wireframeHelpers.clear();
-            }
 
-            btn.classList.toggle('active', wireframeEnabled);
+                    // Process meshes with error handling
+                    meshes.forEach((mesh) => {
+                        try {
+                            const overlays = createWireframeOverlay(mesh);
+                            if (overlays && overlays.length > 0) {
+                                overlays.forEach(overlay => {
+                                    if (overlay) {
+                                        mesh.add(overlay);
+                                    }
+                                });
+                                wireframeHelpers.set(mesh, overlays);
+                            }
+                        } catch (error) {
+                            console.error('Error adding wireframe to mesh:', error);
+                        }
+                    });
+
+                    console.log(`Wireframe enabled for ${wireframeHelpers.size} meshes`);
+                } else {
+                    // Remove wireframe overlays
+                    try {
+                        wireframeHelpers.forEach((overlays, mesh) => {
+                            if (overlays && Array.isArray(overlays)) {
+                                overlays.forEach(overlay => {
+                                    try {
+                                        if (overlay && mesh) {
+                                            mesh.remove(overlay);
+                                        }
+                                        if (overlay && overlay.geometry && overlay.geometry.dispose) {
+                                            overlay.geometry.dispose();
+                                        }
+                                        if (overlay && overlay.material && overlay.material.dispose) {
+                                            overlay.material.dispose();
+                                        }
+                                    } catch (error) {
+                                        console.error('Error removing overlay:', error);
+                                    }
+                                });
+                            }
+                        });
+                        wireframeHelpers.clear();
+                        console.log('Wireframe disabled and cleaned up');
+                    } catch (error) {
+                        console.error('Error clearing wireframe:', error);
+                        wireframeHelpers.clear();
+                    }
+                }
+
+                btn.classList.toggle('active', wireframeEnabled);
+            } catch (error) {
+                console.error('Error toggling wireframe:', error);
+                wireframeEnabled = false;
+                btn.classList.remove('active');
+                alert('Error toggling wireframe. Please try again or reload the model.');
+            }
         }
 
         function setTextureMode(mode) {
