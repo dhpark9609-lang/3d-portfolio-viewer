@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -223,91 +223,92 @@
 
         <div id="loading">
             <div class="loader"></div>
-            <p>모델 로딩 중...</p>
+            <p>Loading Model...</p>
         </div>
 
         <div id="instructions">
-            <h3>💡 컨트롤 (Unreal 스타일)</h3>
-            <p><span class="hotkey">좌클릭 + 드래그</span> 회전</p>
-            <p><span class="hotkey">우클릭 + 드래그</span> 회전</p>
-            <p><span class="hotkey">중간버튼 + 드래그</span> 이동</p>
-            <p><span class="hotkey">마우스 휠</span> 줌</p>
-            <p><span class="hotkey">F 키</span> 프레임 포커스</p>
+            <h3>💡 Controls (Unreal Style)</h3>
+            <p><span class="hotkey">Left Click + Drag</span> Rotate</p>
+            <p><span class="hotkey">Right Click + Drag</span> Rotate</p>
+            <p><span class="hotkey">Alt + Right Click</span> Zoom</p>
+            <p><span class="hotkey">Middle Click + Drag</span> Pan</p>
+            <p><span class="hotkey">Mouse Wheel</span> Zoom</p>
+            <p><span class="hotkey">F Key</span> Frame Focus</p>
         </div>
 
         <div id="controls">
-            <h2>🎨 컨트롤</h2>
+            <h2>🎨 Controls</h2>
 
             <div class="control-group">
-                <label for="file-upload">3D 모델 업로드</label>
+                <label for="file-upload">Upload 3D Model</label>
                 <input type="file" id="file-upload" accept=".glb,.gltf">
                 <button class="file-upload-btn" onclick="document.getElementById('file-upload').click()">
-                    📁 GLB/GLTF 파일 선택
+                    📁 Select GLB/GLTF File
                 </button>
             </div>
 
             <div class="control-group">
-                <label>표시 모드</label>
+                <label>Display Mode</label>
                 <button id="wireframe-btn" onclick="toggleWireframe()">
-                    🔲 와이어프레임 토글
+                    🔲 Toggle Wireframe
                 </button>
             </div>
 
             <div class="control-group">
-                <label>씬 설정</label>
+                <label>Scene Settings</label>
                 <button id="grid-axis-btn" onclick="toggleGridAndAxis()" class="active">
-                    # 그리드 & XYZ 축
+                    # Grid & XYZ Axis
                 </button>
             </div>
 
             <div class="control-group">
-                <label>라이팅 프리셋</label>
+                <label>Lighting Preset</label>
                 <button id="neutral-light-btn" onclick="setLightingPreset('neutral')" class="active">
-                    💡 뉴트럴
+                    💡 Neutral
                 </button>
                 <button id="daylight-btn" onclick="setLightingPreset('daylight')">
-                    ☀️ 데이라이트
+                    ☀️ Daylight
                 </button>
                 <button id="night-btn" onclick="setLightingPreset('night')">
-                    🌙 나이트
+                    🌙 Night
                 </button>
             </div>
 
             <div class="control-group">
-                <label>텍스처 비교</label>
+                <label>Texture Compare</label>
                 <div class="compare-buttons">
                     <button id="texture-on-btn" onclick="setTextureMode('on')" class="active">
-                        텍스처 ON
+                        Texture ON
                     </button>
                     <button id="texture-off-btn" onclick="setTextureMode('off')">
-                        텍스처 OFF
+                        Texture OFF
                     </button>
                 </div>
             </div>
 
             <div class="control-group">
-                <label>배경 색상</label>
+                <label>Background Color</label>
                 <input type="color" id="bg-color" value="#0a0a0a" onchange="updateBackground(this.value)">
             </div>
 
             <div class="control-group">
                 <button onclick="resetCamera()">
-                    🔄 카메라 리셋
+                    🔄 Reset Camera
                 </button>
             </div>
         </div>
 
         <div id="stats">
             <div class="stat-row">
-                <span class="stat-label">폴리곤 수:</span>
+                <span class="stat-label">Polygons:</span>
                 <span class="stat-value" id="poly-count">-</span>
             </div>
             <div class="stat-row">
-                <span class="stat-label">버텍스 수:</span>
+                <span class="stat-label">Vertices:</span>
                 <span class="stat-value" id="vertex-count">-</span>
             </div>
             <div class="stat-row">
-                <span class="stat-label">모델 크기:</span>
+                <span class="stat-label">Model Size:</span>
                 <span class="stat-value" id="model-size">-</span>
             </div>
         </div>
@@ -327,7 +328,12 @@
         let gridHelper, axisHelper;
         let lightingPreset = 'neutral';
 
-        // 초기화
+        // Alt + Right-click zoom variables
+        let isAltRightClickZoom = false;
+        let zoomStartY = 0;
+        let zoomStartDistance = 0;
+
+        // Initialize
         function init() {
             // Scene
             scene = new THREE.Scene();
@@ -398,6 +404,11 @@
             document.getElementById('file-upload').addEventListener('change', handleFileUpload);
             window.addEventListener('resize', onWindowResize);
             window.addEventListener('keydown', onKeyDown);
+
+            // Alt + Right-click zoom event listeners
+            renderer.domElement.addEventListener('mousedown', onMouseDown);
+            renderer.domElement.addEventListener('mousemove', onMouseMove);
+            renderer.domElement.addEventListener('mouseup', onMouseUp);
 
             // Start animation
             animate();
@@ -625,7 +636,7 @@
                     document.getElementById('instructions').style.display = 'none';
                 }, function(error) {
                     console.error('Error loading model:', error);
-                    alert('모델 로딩 실패. GLB/GLTF 파일인지 확인해주세요.');
+                    alert('Failed to load model. Please check if it is a GLB/GLTF file.');
                     document.getElementById('loading').style.display = 'none';
                 });
             };
@@ -768,6 +779,47 @@
             requestAnimationFrame(animate);
             controls.update();
             renderer.render(scene, camera);
+        }
+
+        // Alt + Right-click zoom handlers
+        function onMouseDown(event) {
+            if (event.button === 2 && event.altKey) { // Right-click (button 2) with Alt key
+                isAltRightClickZoom = true;
+                zoomStartY = event.clientY;
+                zoomStartDistance = camera.position.distanceTo(controls.target);
+                controls.enabled = false; // Disable orbit controls temporarily
+                event.preventDefault();
+            }
+        }
+
+        function onMouseMove(event) {
+            if (isAltRightClickZoom) {
+                const deltaY = event.clientY - zoomStartY;
+                const zoomSpeed = 0.01;
+
+                // Calculate new distance (negative deltaY = zoom in, positive = zoom out)
+                const newDistance = zoomStartDistance * (1 + deltaY * zoomSpeed);
+
+                // Clamp distance to control limits
+                const clampedDistance = Math.max(
+                    controls.minDistance,
+                    Math.min(controls.maxDistance, newDistance)
+                );
+
+                // Update camera position
+                const direction = camera.position.clone().sub(controls.target).normalize();
+                camera.position.copy(controls.target).add(direction.multiplyScalar(clampedDistance));
+
+                event.preventDefault();
+            }
+        }
+
+        function onMouseUp(event) {
+            if (event.button === 2 && isAltRightClickZoom) {
+                isAltRightClickZoom = false;
+                controls.enabled = true; // Re-enable orbit controls
+                event.preventDefault();
+            }
         }
 
         // Start
