@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퇴마록 - 3D Artist Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-hero-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(239, 68, 68, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 60px 0;
+        }
+        .detail-column h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .gallery-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .project-hero-banner {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">3D Artist</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../works.html">Personal Works</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-hero-banner">
+        <img src="https://placehold.co/1920x600/1e1e1e/ec4899?text=Exorcism+Chronicles" alt="퇴마록">
+    </div>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h1 class="gradient-text" style="font-size: 48px; margin-bottom: 20px;">퇴마록</h1>
+            <p style="font-size: 20px; color: var(--text-secondary); margin-bottom: 10px;">Film</p>
+            <span class="status-tag status-released" style="font-size: 14px;">Released</span>
+
+            <div class="project-details">
+                <div class="detail-column">
+                    <h3>Project Information</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Title</div>
+                        <div class="detail-value">퇴마록 (Exorcism Chronicles)</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Production</div>
+                        <div class="detail-value">LOCUS Corporation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Released</div>
+                        <div class="detail-value">2024</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Type</div>
+                        <div class="detail-value">Film / VFX</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">Released</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Software</div>
+                        <div class="detail-value">Maya, ZBrush, Substance Painter, Houdini, Arnold</div>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <h3>My Role</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Position</div>
+                        <div class="detail-value">VFX Asset Artist & Creature Modeler</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Responsibilities</div>
+                        <div class="detail-value">
+                            • Creature and demon modeling<br>
+                            • VFX asset creation and texturing<br>
+                            • Supernatural element design<br>
+                            • Integration with live-action footage
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Technical Focus</div>
+                        <div class="detail-value">
+                            • Organic creature sculpting<br>
+                            • Realistic material development<br>
+                            • VFX pipeline integration
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">Project Gallery</h2>
+            <div class="project-gallery">
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/ec4899?text=Creature+Design" alt="Creature Design">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/ef4444?text=VFX+Assets" alt="VFX Assets">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/f59e0b?text=Texturing" alt="Texturing">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/a855f7?text=Final+Integration" alt="Final Integration">
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">About the Project</h2>
+            <div class="project-description">
+                <p style="margin-bottom: 20px;">
+                    Exorcism Chronicles is a supernatural horror film that required extensive VFX work to bring otherworldly creatures and paranormal phenomena to life. As part of the LOCUS VFX team, I specialized in creating realistic creature models and supernatural assets that seamlessly integrated with live-action footage.
+                </p>
+                <p style="margin-bottom: 20px;">
+                    The project demanded a unique blend of anatomical accuracy and fantastical design. Working closely with the VFX supervisor and concept artists, I developed a range of demon and spirit creatures that were both terrifying and believable. Each creature required detailed sculpting in ZBrush, followed by retopology and extensive texturing work to achieve the desired photorealistic quality.
+                </p>
+                <p>
+                    One of the most challenging aspects was ensuring that our CG elements would hold up under various lighting conditions in the final composite. This required developing flexible shader systems and working iteratively with the lighting and compositing departments. The film was successfully released in 2024, with the VFX sequences receiving positive recognition for their realism and visual impact.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding-top: 60px; border-top: 1px solid var(--border);">
+                <a href="../projects.html" class="btn btn-secondary">← Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 3D Artist Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

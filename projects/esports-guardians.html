@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전자오락수호대 - 3D Artist Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-hero-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(168, 85, 247, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 60px 0;
+        }
+        .detail-column h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .gallery-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .project-hero-banner {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">3D Artist</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../works.html">Personal Works</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-hero-banner">
+        <img src="https://placehold.co/1920x600/1e1e1e/ef4444?text=ESports+Guardians" alt="전자오락수호대">
+    </div>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h1 class="gradient-text" style="font-size: 48px; margin-bottom: 20px;">전자오락수호대</h1>
+            <p style="font-size: 20px; color: var(--text-secondary); margin-bottom: 10px;">Animation Series</p>
+            <span class="status-tag status-completed" style="font-size: 14px;">Production Completed</span>
+
+            <div class="project-details">
+                <div class="detail-column">
+                    <h3>Project Information</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Title</div>
+                        <div class="detail-value">전자오락수호대 (ESports Guardians)</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Production</div>
+                        <div class="detail-value">LOCUS Corporation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Year</div>
+                        <div class="detail-value">2024</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Type</div>
+                        <div class="detail-value">Animation Series</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">Production Completed (Unreleased)</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Software</div>
+                        <div class="detail-value">Maya, ZBrush, Substance Painter, Arnold</div>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <h3>My Role</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Position</div>
+                        <div class="detail-value">Character Modeling & Texturing Artist</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Responsibilities</div>
+                        <div class="detail-value">
+                            • Character design translation to 3D<br>
+                            • Model sculpting and retopology<br>
+                            • Texture creation and material setup<br>
+                            • Asset delivery for animation pipeline
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Technical Focus</div>
+                        <div class="detail-value">
+                            • Animation-ready topology<br>
+                            • Stylized character modeling<br>
+                            • Efficient UV layout and texturing
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">Project Gallery</h2>
+            <div class="project-gallery">
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/ef4444?text=Main+Characters" alt="Main Characters">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/a855f7?text=Character+Poses" alt="Character Poses">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/f59e0b?text=Texturing+Details" alt="Texturing Details">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/10b981?text=Animation+Tests" alt="Animation Tests">
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">About the Project</h2>
+            <div class="project-description">
+                <p style="margin-bottom: 20px;">
+                    ESports Guardians is an animated series that combines gaming culture with superhero action. As a character artist on this production, I was responsible for bringing the show's diverse cast of characters to life through detailed 3D modeling and texturing work.
+                </p>
+                <p style="margin-bottom: 20px;">
+                    The project required translating concept art into production-ready 3D assets that could be efficiently animated while maintaining visual appeal. Each character needed clean topology for deformation, well-organized UV layouts for texture painting, and materials that would render consistently across different lighting scenarios. Working closely with the rigging and animation teams, I ensured that all models met technical requirements for the production pipeline.
+                </p>
+                <p>
+                    This series featured a mix of stylized human characters and fantastical elements, which allowed for creative problem-solving in both modeling and texturing workflows. The production was completed in 2024, with the series awaiting its official release date.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding-top: 60px; border-top: 1px solid var(--border);">
+                <a href="../projects.html" class="btn btn-secondary">← Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 3D Artist Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

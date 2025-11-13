@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호랑이형님 - 3D Artist Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-hero-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(99, 102, 241, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 60px 0;
+        }
+        .detail-column h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .gallery-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .project-hero-banner {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">3D Artist</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../works.html">Personal Works</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-hero-banner">
+        <img src="https://placehold.co/1920x600/1e1e1e/a855f7?text=Tiger+Bro" alt="호랑이형님">
+    </div>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h1 class="gradient-text" style="font-size: 48px; margin-bottom: 20px;">호랑이형님</h1>
+            <p style="font-size: 20px; color: var(--text-secondary); margin-bottom: 10px;">Animation</p>
+            <span class="status-tag status-production" style="font-size: 14px;">In Production</span>
+
+            <div class="project-details">
+                <div class="detail-column">
+                    <h3>Project Information</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Title</div>
+                        <div class="detail-value">호랑이형님 (Tiger Bro)</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Production</div>
+                        <div class="detail-value">LOCUS Corporation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Year</div>
+                        <div class="detail-value">2024</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Type</div>
+                        <div class="detail-value">Animation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">In Production</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Software</div>
+                        <div class="detail-value">Maya, ZBrush, Substance Painter, Arnold</div>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <h3>My Role</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Position</div>
+                        <div class="detail-value">Character & Prop Modeling Artist</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Responsibilities</div>
+                        <div class="detail-value">
+                            • Character modeling and sculpting<br>
+                            • Prop and asset creation<br>
+                            • Texturing and material development<br>
+                            • Quality assurance and revisions
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Technical Focus</div>
+                        <div class="detail-value">
+                            • Stylized character design<br>
+                            • Efficient asset creation workflow<br>
+                            • Consistency across asset library
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">Project Gallery</h2>
+            <div class="project-gallery">
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/a855f7?text=Character+Models" alt="Character Models">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/6366f1?text=Prop+Assets" alt="Prop Assets">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/8b5cf6?text=Modeling+Process" alt="Modeling Process">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/ec4899?text=Test+Renders" alt="Test Renders">
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">About the Project</h2>
+            <div class="project-description">
+                <p style="margin-bottom: 20px;">
+                    Tiger Bro is an ongoing animation project currently in production at LOCUS Corporation. As a character and prop modeling artist, I'm contributing to the development of the show's visual style through detailed 3D asset creation.
+                </p>
+                <p style="margin-bottom: 20px;">
+                    This project features a unique blend of traditional Korean folklore elements with contemporary animation styling. My work focuses on creating characters and props that balance cultural authenticity with modern appeal. Each asset goes through multiple iterations to ensure it meets the artistic vision while remaining practical for the animation pipeline.
+                </p>
+                <p>
+                    Working on an active production provides valuable experience in adapting to evolving creative direction and maintaining consistency across a growing asset library. The project continues to develop, with the team working collaboratively to bring this distinctive animation to life.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding-top: 60px; border-top: 1px solid var(--border);">
+                <a href="../projects.html" class="btn btn-secondary">← Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 3D Artist Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

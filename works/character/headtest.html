@@ -208,7 +208,8 @@
             <div class="nav-brand">3D Artist</div>
             <ul class="nav-menu">
                 <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../works.html">Works</a></li>
+                <li><a href="../../works.html">Personal Works</a></li>
+                <li><a href="../../projects.html">Projects</a></li>
                 <li><a href="../../about.html">About</a></li>
                 <li><a href="../../contact.html">Contact</a></li>
             </ul>
@@ -308,13 +309,11 @@
 
                 <div class="viewer-controls">
                     <h3>Controls</h3>
-                    <button class="control-btn" id="reset-btn">🔄 Reset View</button>
-                    <button class="control-btn active" id="grid-btn"># Show Grid</button>
                     <button class="control-btn" id="texture-btn">🎨 Toggle Texture</button>
                 </div>
 
                 <div class="viewer-info">
-                    💡 Left-click: Rotate | Right-click: Rotate | Middle-click: Pan | Scroll: Zoom | F: Focus
+                    💡 Left-click: Rotate | Right-click: Pan | Scroll: Zoom
                 </div>
             </div>
         </div>
@@ -397,17 +396,15 @@
                 // Lighting
                 setupLighting();
 
-                // Grid
+                // Grid (hidden by default)
                 gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
+                gridHelper.visible = false;
                 scene.add(gridHelper);
 
                 // Event listeners
                 window.addEventListener('resize', onWindowResize);
-                window.addEventListener('keydown', onKeyDown);
 
                 // Control buttons
-                document.getElementById('reset-btn').addEventListener('click', resetCamera);
-                document.getElementById('grid-btn').addEventListener('click', toggleGrid);
                 document.getElementById('texture-btn').addEventListener('click', toggleTexture);
 
                 // Load model
@@ -515,18 +512,6 @@
             controls.update();
         }
 
-        function resetCamera() {
-            camera.position.set(5, 3, 5);
-            controls.target.set(0, 0, 0);
-            controls.update();
-        }
-
-        function toggleGrid() {
-            const visible = !gridHelper.visible;
-            gridHelper.visible = visible;
-            document.getElementById('grid-btn').classList.toggle('active', visible);
-        }
-
         function toggleTexture() {
             if (!currentModel) return;
             textureMode = textureMode === 'on' ? 'off' : 'on';
@@ -558,12 +543,6 @@
             });
 
             document.getElementById('texture-btn').classList.toggle('active', textureMode === 'off');
-        }
-
-        function onKeyDown(event) {
-            if (event.key.toLowerCase() === 'f' && currentModel) {
-                frameModel();
-            }
         }
 
         function onWindowResize() {

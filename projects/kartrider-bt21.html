@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카트라이더 BT21 광고 - 3D Artist Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-hero-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(16, 185, 129, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 60px 0;
+        }
+        .detail-column h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .gallery-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+        }
+        .project-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .project-hero-banner {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">3D Artist</div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../works.html">Personal Works</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-hero-banner">
+        <img src="https://placehold.co/1920x600/1e1e1e/06b6d4?text=KartRider+x+BT21" alt="카트라이더 BT21">
+    </div>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h1 class="gradient-text" style="font-size: 48px; margin-bottom: 20px;">카트라이더 BT21 광고</h1>
+            <p style="font-size: 20px; color: var(--text-secondary); margin-bottom: 10px;">Commercial</p>
+            <span class="status-tag status-released" style="font-size: 14px;">Released</span>
+
+            <div class="project-details">
+                <div class="detail-column">
+                    <h3>Project Information</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Title</div>
+                        <div class="detail-value">KartRider x BT21 Collaboration</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Client</div>
+                        <div class="detail-value">Nexon (KartRider)</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Production</div>
+                        <div class="detail-value">LOCUS Corporation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Released</div>
+                        <div class="detail-value">2023</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Type</div>
+                        <div class="detail-value">Commercial / Game Promotion</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">Released</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Software</div>
+                        <div class="detail-value">Maya, ZBrush, Substance Painter, Redshift</div>
+                    </div>
+                </div>
+
+                <div class="detail-column">
+                    <h3>My Role</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Position</div>
+                        <div class="detail-value">Character Modeling & Lookdev Artist</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Responsibilities</div>
+                        <div class="detail-value">
+                            • BT21 character 3D modeling<br>
+                            • Brand guideline compliance<br>
+                            • Stylized lookdev and shading<br>
+                            • Integration with KartRider aesthetic
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Technical Focus</div>
+                        <div class="detail-value">
+                            • Accurate character translation to 3D<br>
+                            • Stylized rendering techniques<br>
+                            • High-quality commercial output
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">Project Gallery</h2>
+            <div class="project-gallery">
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/06b6d4?text=BT21+Characters" alt="BT21 Characters">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/10b981?text=Modeling+Process" alt="Modeling Process">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/8b5cf6?text=Shader+Development" alt="Shader Development">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://placehold.co/800x450/1e1e1e/ec4899?text=Final+Commercial" alt="Final Commercial">
+                </div>
+            </div>
+
+            <h2 style="font-size: 32px; margin: 60px 0 30px;">About the Project</h2>
+            <div class="project-description">
+                <p style="margin-bottom: 20px;">
+                    The KartRider x BT21 collaboration was a high-profile commercial project bringing together Nexon's popular racing game with LINE Friends' beloved BT21 characters. As the lead character modeler, I was responsible for translating the iconic 2D BT21 designs into appealing 3D models that would fit seamlessly into the KartRider universe.
+                </p>
+                <p style="margin-bottom: 20px;">
+                    This project required meticulous attention to brand guidelines while adapting the characters for a 3D environment. Each BT21 character needed to maintain its distinctive personality and charm while being technically optimized for commercial production. The lookdev process was particularly important, as we aimed for a stylized yet polished aesthetic that would appeal to both existing fans and new audiences.
+                </p>
+                <p>
+                    Working closely with both Nexon and LINE Friends representatives, we ensured that every detail met their quality standards and brand requirements. The commercial was successfully launched in 2023, generating significant engagement across social media platforms and contributing to the game's promotional campaign.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding-top: 60px; border-top: 1px solid var(--border);">
+                <a href="../projects.html" class="btn btn-secondary">← Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 3D Artist Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
