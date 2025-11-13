@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - 3D Artist Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">3D Artist</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="works.html" class="active">Works</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="gradient-text">My Works</h1>
+            <p>Explore my 3D art portfolio</p>
+        </div>
+    </section>
+
+    <section class="works-section">
+        <div class="container">
+            <div class="works-filter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="character">Character</button>
+                <button class="filter-btn" data-category="environment">Environment</button>
+                <button class="filter-btn" data-category="product">Product</button>
+            </div>
+
+            <div class="works-grid">
+                <!-- Head Study Project -->
+                <a href="works/character/headtest.html" class="work-card" data-category="character">
+                    <div class="work-image">
+                        <img src="https://placehold.co/600x400/1e1e1e/6366f1?text=Head+Study" alt="Head Study">
+                        <div class="work-overlay">
+                            <span class="view-project">View Project →</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Head Study</h3>
+                        <p class="work-category">Character</p>
+                        <p class="work-description">Realistic human head modeling and texturing</p>
+                    </div>
+                </a>
+
+                <!-- Placeholder Projects -->
+                <div class="work-card" data-category="character">
+                    <div class="work-image">
+                        <img src="https://placehold.co/600x400/1e1e1e/8b5cf6?text=Character+Design" alt="Character Design">
+                        <div class="work-overlay">
+                            <span class="view-project">Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Fantasy Character</h3>
+                        <p class="work-category">Character</p>
+                        <p class="work-description">Stylized character model with detailed armor</p>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="environment">
+                    <div class="work-image">
+                        <img src="https://placehold.co/600x400/1e1e1e/ec4899?text=Environment" alt="Environment">
+                        <div class="work-overlay">
+                            <span class="view-project">Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Sci-Fi Environment</h3>
+                        <p class="work-category">Environment</p>
+                        <p class="work-description">Futuristic cityscape with neon lighting</p>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="product">
+                    <div class="work-image">
+                        <img src="https://placehold.co/600x400/1e1e1e/06b6d4?text=Product+Viz" alt="Product">
+                        <div class="work-overlay">
+                            <span class="view-project">Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Product Visualization</h3>
+                        <p class="work-category">Product</p>
+                        <p class="work-description">Photorealistic product renders</p>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="character">
+                    <div class="work-image">
+                        <img src="https://placehold.co/600x400/1e1e1e/f59e0b?text=Creature" alt="Creature">
+                        <div class="work-overlay">
+                            <span class="view-project">Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Creature Design</h3>
+                        <p class="work-category">Character</p>
+                        <p class="work-description">Organic creature sculpt with textures</p>
+                    </div>
+                </div>
+
+                <div class="work-card" data-category="environment">
+                    <div class="work-image">
+                        <img src="https://placehold.co/600x400/1e1e1e/10b981?text=Props" alt="Props">
+                        <div class="work-overlay">
+                            <span class="view-project">Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Game Props</h3>
+                        <p class="work-category">Environment</p>
+                        <p class="work-description">Low-poly game-ready assets</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 3D Artist Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const workCards = document.querySelectorAll('.work-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+
+                workCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
